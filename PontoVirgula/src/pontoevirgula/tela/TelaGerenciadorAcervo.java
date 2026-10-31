@@ -1,22 +1,45 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package pontoevirgula.tela;
 
-/**
- *
- * @author maria
- */
+import pontoevirgula.modelo.GerenciadorProdutos;
+import pontoevirgula.modelo.Produto;
+import pontoevirgula.modelo.Livro;
+import pontoevirgula.modelo.ProdutoCafeteria;
+
+import javax.swing.table.DefaultTableModel;
+import java.util.ArrayList;
+
 public class TelaGerenciadorAcervo extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaGerenciadorAcervo.class.getName());
 
-    /**
-     * Creates new form TelaGerenciadorAcervo
-     */
     public TelaGerenciadorAcervo() {
         initComponents();
+        gerenciador = new GerenciadorProdutos();
+        
+        Livro livro = new Livro(
+            "LIV001",
+            "Dom Casmurro",
+            10.00,
+            3,
+            "1112223334445",
+            "Romance",
+            "Machado de Assis"
+        );
+
+        ProdutoCafeteria cafe = new ProdutoCafeteria(
+            "CAF001",
+            "Cappuccino",
+            8.00,
+            10,
+            "Bebida",
+            "Médio",
+            "Copo"
+        );
+        
+        gerenciador.adicionarProduto(livro);
+        gerenciador.adicionarProduto(cafe);
+        
+        atualizarTabela(gerenciador.listarTodos());
     }
 
     /**
@@ -29,22 +52,171 @@ public class TelaGerenciadorAcervo extends javax.swing.JFrame {
     private void initComponents() {
 
         testeProduto1 = new pontoevirgula.modelo.TesteProduto();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        txtSimples = new javax.swing.JLabel();
+        txtBusca = new javax.swing.JTextField();
+        btnBuscar = new javax.swing.JButton();
+        btnNovoProduto = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblProdutos = new javax.swing.JTable();
+        lblMensagem = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setPreferredSize(new java.awt.Dimension(600, 400));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setText("Gerenciamento de Acervo");
+
+        txtSimples.setText("Buscar produto:");
+
+        txtBusca.setText("Nome ou código");
+        txtBusca.addActionListener(this::txtBuscaActionPerformed);
+
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(this::btnBuscarActionPerformed);
+
+        btnNovoProduto.setText("+ Novo produto");
+
+        tblProdutos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Código", "Nome", "Tipo", "Preço", "Estoque"
+            }
+        ));
+        jScrollPane1.setViewportView(tblProdutos);
+
+        lblMensagem.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(220, 220, 220))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtSimples)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnBuscar)
+                                .addGap(43, 43, 43)
+                                .addComponent(btnNovoProduto))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(271, 271, 271)
+                        .addComponent(lblMensagem)))
+                .addContainerGap(44, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(jLabel1)
+                .addGap(45, 45, 45)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtSimples)
+                    .addComponent(txtBusca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar)
+                    .addComponent(btnNovoProduto))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblMensagem)
+                .addGap(156, 156, 156))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBuscaActionPerformed
+    
+    private void atualizarTabela(ArrayList<Produto> produtos) {
+        DefaultTableModel modelo = (DefaultTableModel) tblProdutos.getModel();
+        modelo.setRowCount(0);
+        
+        for (Produto produto : produtos) {
+            String tipo;
+
+            if (produto instanceof Livro) {
+                tipo = "Livro";
+            } else if (produto instanceof ProdutoCafeteria) {
+                tipo = "Cafeteria";
+            } else {
+                tipo = "Outro";
+            }
+
+            modelo.addRow(new Object[]{
+                produto.getCodigo(),
+                produto.getNome(),
+                tipo,
+                produto.getPreco(),
+                produto.getQuantidadeEstoque()
+            });
+        }
+    }
+    
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+        String busca = txtBusca.getText().trim();
+        
+        if (busca.isEmpty()) {
+            atualizarTabela(gerenciador.listarTodos());
+            lblMensagem.setText("");
+            return;
+        }
+        
+        ArrayList<Produto> encontrado = gerenciador.buscarPorCodigo(busca);
+        ArrayList<Produto> porNome = gerenciador.buscarPorNome(busca);
+        
+        for (Produto produto : porNome) {
+            if (!encontrado.contains(produto)) {
+                encontrado.add(produto);
+            }
+        }
+        
+        if (encontrado.isEmpty()) {
+            encontrado = gerenciador.buscarPorNome(busca);
+        }
+        
+        atualizarTabela(encontrado);
+        
+        if (encontrado.isEmpty()) {
+            lblMensagem.setText("Nenhum produto encontrado");
+        } else {
+            lblMensagem.setText("");
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -71,7 +243,18 @@ public class TelaGerenciadorAcervo extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> new TelaGerenciadorAcervo().setVisible(true));
     }
 
+    private GerenciadorProdutos gerenciador;
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnNovoProduto;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblMensagem;
+    private javax.swing.JTable tblProdutos;
     private pontoevirgula.modelo.TesteProduto testeProduto1;
+    private javax.swing.JTextField txtBusca;
+    private javax.swing.JLabel txtSimples;
     // End of variables declaration//GEN-END:variables
 }

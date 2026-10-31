@@ -1,5 +1,7 @@
 package pontoevirgula.modelo;
 
+import java.util.ArrayList;
+
 public class TesteProduto {
     public static void main(String[] args) {
         Livro livro = new Livro(
@@ -23,15 +25,14 @@ public class TesteProduto {
         );
         
         GerenciadorProdutos gerenciador = new GerenciadorProdutos();
-        boolean primeiro = gerenciador.adicionarProduto(livro);
-        System.out.println("1 - " + primeiro);
         
-        boolean segundo = gerenciador.adicionarProduto(cafe);
-        System.out.println("2 - " + segundo);
+        gerenciador.adicionarProduto(livro);
+        gerenciador.adicionarProduto(cafe);
         
-        boolean terceiro = gerenciador.adicionarProduto(livro);
-        System.out.println("3 - " + terceiro);
-        
-        gerenciador.listarProdutos();
+        ArrayList<Produto> todos = gerenciador.listarTodos();
+
+        for (Produto produto : todos) {
+            System.out.println(produto.getCodigo() + " - " + produto.getNome());
+        }
     }
 }

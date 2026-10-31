@@ -11,7 +11,7 @@ public class GerenciadorProdutos {
     }
     
     public boolean adicionarProduto(Produto produto) {
-        if (buscarPorCodigo(produto.getCodigo()) != null) {
+        if (!buscarPorCodigo(produto.getCodigo()).isEmpty()) {
             return false;
         }
         
@@ -19,14 +19,41 @@ public class GerenciadorProdutos {
         return true;
     }
     
-    public Produto buscarPorCodigo(String codigo) {
+    public ArrayList<Produto> buscarPorCodigo(String codigo) {
+        ArrayList<Produto> encontrados = new ArrayList<>();
+        
+        if (codigo == null || codigo.trim().isEmpty()) {
+            return encontrados;
+        }
+        
+        codigo = codigo.trim().toLowerCase();
+        
         for (Produto produto : produtos) {
-            if (produto.getCodigo().equals(codigo)) {
-                return produto;
+            if (produto.getCodigo().toLowerCase().contains(codigo.toLowerCase())) {
+                encontrados.add(produto);
             }
         }
         
-        return null;
+        return encontrados;
+    }
+    
+    public ArrayList<Produto> buscarPorNome(String nome) {
+        ArrayList<Produto> encontrados = new ArrayList<>();
+        
+        if (nome == null || nome.trim().isEmpty()) {
+            return encontrados;
+        }
+        
+        nome = nome.trim().toLowerCase();
+        
+        for (Produto produto : produtos) {            
+            if (produto.getNome().toLowerCase().contains(nome.toLowerCase())) {
+                encontrados.add(produto);
+            }
+        }
+
+        return encontrados;
+        
     }
     
     public void listarProdutos() {
@@ -36,5 +63,9 @@ public class GerenciadorProdutos {
             System.out.println("Preço: " + produto.getPreco());
             System.out.println("Quantidade em estoque: " + produto.getQuantidadeEstoque());
         }
+    }
+    
+    public ArrayList<Produto> listarTodos() {
+        return new ArrayList<>(produtos);
     }
 }
