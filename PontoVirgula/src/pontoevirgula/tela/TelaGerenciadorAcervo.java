@@ -1,10 +1,13 @@
+//Tela responsável pelo gerenciamento do acervo
 package pontoevirgula.tela;
 
+//importação das bibliotecas criadas
 import pontoevirgula.modelo.GerenciadorProdutos;
 import pontoevirgula.modelo.Produto;
 import pontoevirgula.modelo.Livro;
 import pontoevirgula.modelo.ProdutoCafeteria;
 
+//importação de bibliotecas de funcionalidades java
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 
