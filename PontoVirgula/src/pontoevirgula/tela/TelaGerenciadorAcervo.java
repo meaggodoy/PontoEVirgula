@@ -10,6 +10,8 @@ import pontoevirgula.modelo.ProdutoCafeteria;
 //importação de bibliotecas de funcionalidades java
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class TelaGerenciadorAcervo extends javax.swing.JFrame {
     
@@ -225,6 +227,14 @@ public class TelaGerenciadorAcervo extends javax.swing.JFrame {
     private void btnNovoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoProdutoActionPerformed
         // TODO add your handling code here:
         TelaCadastroProduto tela = new TelaCadastroProduto(gerenciador);
+        
+        tela.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                atualizarTabela(gerenciador.listarTodos());
+            }
+        });
+        
         tela.setVisible(true);
     }//GEN-LAST:event_btnNovoProdutoActionPerformed
 

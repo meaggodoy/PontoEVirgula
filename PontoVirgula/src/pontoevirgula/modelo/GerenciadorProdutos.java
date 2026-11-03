@@ -1,6 +1,8 @@
 package pontoevirgula.modelo;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class GerenciadorProdutos {
     private ArrayList<Produto> produtos;
@@ -66,6 +68,11 @@ public class GerenciadorProdutos {
     }
     
     public ArrayList<Produto> listarTodos() {
-        return new ArrayList<>(produtos);
+        ArrayList<Produto> lista = new ArrayList<>(produtos);
+        
+        Collections.sort(lista, Comparator.comparing((Produto p) -> p.getCodigo().replaceAll("\\d+", ""))
+        .thenComparingInt(p -> Integer.parseInt(p.getCodigo().replaceAll("\\D+", ""))));
+        
+        return lista;
     }
 }
