@@ -10,10 +10,10 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TelaCadastroProduto.class.getName());
     private GerenciadorProdutos gerenciador;
     
-    public TelaCadastroProduto() {
+    public TelaCadastroProduto(GerenciadorProdutos gerenciador) {
         initComponents();
         
-        gerenciador = new GerenciadorProdutos();
+        this.gerenciador = gerenciador;
         
         pnlLivro.setVisible(true);
         pnlCafeteria.setVisible(false);
@@ -54,9 +54,9 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         btnCadastrar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         lblMensagem = new javax.swing.JLabel();
+        btnVoltar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(600, 400));
 
         jPanel1.setPreferredSize(new java.awt.Dimension(600, 400));
 
@@ -205,6 +205,9 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         btnLimpar.setText("Limpar");
         btnLimpar.addActionListener(this::btnLimparActionPerformed);
 
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(this::btnVoltarActionPerformed);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -240,6 +243,8 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
+                        .addGap(59, 59, 59)
+                        .addComponent(btnVoltar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblMensagem)
                         .addGap(22, 22, 22))))
@@ -256,7 +261,9 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(btnVoltar))
                     .addComponent(lblMensagem))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
@@ -444,13 +451,19 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
     public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(() -> new TelaCadastroProduto().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new TelaGerenciadorAcervo().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnLimpar;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox<String> cmbTipoProduto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

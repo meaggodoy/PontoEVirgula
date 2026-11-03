@@ -81,6 +81,7 @@ public class TelaGerenciadorAcervo extends javax.swing.JFrame {
         btnBuscar.addActionListener(this::btnBuscarActionPerformed);
 
         btnNovoProduto.setText("+ Novo produto");
+        btnNovoProduto.addActionListener(this::btnNovoProdutoActionPerformed);
 
         tblProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -220,6 +221,12 @@ public class TelaGerenciadorAcervo extends javax.swing.JFrame {
             lblMensagem.setText("");
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnNovoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoProdutoActionPerformed
+        // TODO add your handling code here:
+        TelaCadastroProduto tela = new TelaCadastroProduto(gerenciador);
+        tela.setVisible(true);
+    }//GEN-LAST:event_btnNovoProdutoActionPerformed
 
     /**
      * @param args the command line arguments
