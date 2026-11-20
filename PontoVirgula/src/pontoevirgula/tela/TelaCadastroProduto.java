@@ -2,7 +2,7 @@ package pontoevirgula.tela;
 
 import pontoevirgula.modelo.GerenciadorProdutos;
 import pontoevirgula.modelo.Produto;
-import pontoevirgula.modelo.Livro;
+import pontoevirgula.modelo.ProdutoLivro;
 import pontoevirgula.modelo.ProdutoCafeteria;
 
 public class TelaCadastroProduto extends javax.swing.JFrame {
@@ -430,7 +430,7 @@ public class TelaCadastroProduto extends javax.swing.JFrame {
                 return;
             }
             
-            produto = new Livro(codigo, nome, preco, estoque, isbn, genero, autor);
+            produto = new ProdutoLivro(codigo, nome, preco, estoque, isbn, genero, autor);
         } else {
             String categoria = txtCategoria.getText().trim();
             String tamanho = txtTamanho.getText().trim();

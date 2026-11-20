@@ -4,7 +4,7 @@ package pontoevirgula.tela;
 //importação das bibliotecas criadas
 import pontoevirgula.modelo.GerenciadorProdutos;
 import pontoevirgula.modelo.Produto;
-import pontoevirgula.modelo.Livro;
+import pontoevirgula.modelo.ProdutoLivro;
 import pontoevirgula.modelo.ProdutoCafeteria;
 
 //importação de bibliotecas de funcionalidades java
@@ -21,7 +21,7 @@ public class TelaGerenciadorAcervo extends javax.swing.JFrame {
         initComponents();
         gerenciador = new GerenciadorProdutos();
         
-        Livro livro = new Livro(
+        ProdutoLivro livro = new ProdutoLivro(
             "LIV001",
             "Dom Casmurro",
             10.00,
@@ -174,7 +174,7 @@ public class TelaGerenciadorAcervo extends javax.swing.JFrame {
         for (Produto produto : produtos) {
             String tipo;
 
-            if (produto instanceof Livro) {
+            if (produto instanceof ProdutoLivro) {
                 tipo = "Livro";
             } else if (produto instanceof ProdutoCafeteria) {
                 tipo = "Cafeteria";

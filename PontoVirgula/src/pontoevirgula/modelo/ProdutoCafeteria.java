@@ -1,15 +1,17 @@
 package pontoevirgula.modelo;
 
+import java.util.ArrayList;
+
 public class ProdutoCafeteria extends Produto {
     private String categoria;
-    private String tamanho;
-    private String unidadeVenda;
+    private String subCategoria;
+    private ArrayList<VariacaoProduto> variacoes;
     
-    public ProdutoCafeteria(String codigo, String nome, double preco, int quantidadeEstoque, String categoria, String tamanho, String unidadeVenda) {
-        super(codigo, nome, preco, quantidadeEstoque);
+    public ProdutoCafeteria(String codigo, String nome, double preco, String categoria, String subCategoria) {
+        super(codigo, nome, preco);
         this.categoria = categoria;
-        this.tamanho = tamanho;
-        this.unidadeVenda = unidadeVenda;
+        this.subCategoria = subCategoria;
+        this.variacoes = new ArrayList<>();
     }
     
     public void setCategoria(String categoria) {
@@ -20,19 +22,19 @@ public class ProdutoCafeteria extends Produto {
         return categoria;
     }
     
-    public void setTamanho(String tamanho) {
-        this.tamanho = tamanho;
+    public void setSubCategoria(String subCategoria) {
+        this.subCategoria = subCategoria;
     }
     
-    public String getTamanho() {
-        return tamanho;
+    public String getSubCategoria() {
+        return subCategoria;
     }
     
-    public void setUnidadeVenda(String unidadeVenda) {
-        this.unidadeVenda = unidadeVenda;
+    public void adicionarVariacao(VariacaoProduto variacao) {
+        variacoes.add(variacao);
     }
     
-    public String getUnidadeVenda() {
-        return unidadeVenda;
+    public ArrayList<VariacaoProduto> getVariacoes() {
+        return variacoes;
     }
 }

@@ -63,7 +63,6 @@ public class GerenciadorProdutos {
             System.out.println("Código: " + produto.getCodigo());
             System.out.println("Nome: " + produto.getNome());
             System.out.println("Preço: " + produto.getPreco());
-            System.out.println("Quantidade em estoque: " + produto.getQuantidadeEstoque());
         }
     }
     
