@@ -7,9 +7,10 @@ public class ProdutoLivro extends Produto {
     private int quantidadeEstoque;
     private String editora;
     private int edicao;
-    private String idioma; 
+    private String idioma;
+    private boolean status;
     
-    public ProdutoLivro(String codigo, String nome, double preco, int quantidadeEstoque, String isbn, String genero, String autor, String editora, int edicao, String idioma) {
+    public ProdutoLivro(String codigo, String nome, double preco, int quantidadeEstoque, String isbn, String genero, String autor, String editora, int edicao, String idioma, boolean status) {
         super(codigo, nome, preco);
         this.isbn = isbn;
         this.genero = genero;
@@ -18,6 +19,7 @@ public class ProdutoLivro extends Produto {
         this.editora = editora;
         this.edicao = edicao;
         this.idioma = idioma;
+        this.status = status;
     }
     
     public void setISBN(String isbn) {
@@ -78,5 +80,13 @@ public class ProdutoLivro extends Produto {
     
     public int getQuantidadeEstoque() {
         return quantidadeEstoque;
+    }
+    
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+    
+    public boolean getStatus() {
+        return status;
     }
 }
